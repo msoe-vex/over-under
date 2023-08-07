@@ -22,7 +22,4 @@ temp.errors
 .d/
 
 # VSCode
-.vscode/*
-!.vscode/launch.json
-!.vscode/tasks.json
 .history/
