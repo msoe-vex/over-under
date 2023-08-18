@@ -1,30 +1,29 @@
 #pragma once
 
-#include "nodes/NodeManager.h"
-#include "auton/auton_routines/ProgrammingSkillsAuton.h"
+#include "api.h"
 #include "auton/auton_routines/TestPathAuton.h"
 #include "auton/auton_routines/TestPoseAuton.h"
 #include "auton/auton_routines/TestTurnAuton.h"
-#include "nodes/subsystems/drivetrain_nodes/IDriveNode.h"
+#include "nodes/NodeManager.h"
 #include "nodes/odometry_nodes/OdometryNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
 #include "nodes/subsystems/ConveyorNode.h"
 #include "nodes/subsystems/IntakeNode.h"
-#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "nodes/subsystems/drivetrain_nodes/IDriveNode.h"
 #include "pathing/PathManager.h"
-#include "api.h"
 
 class AutonManagerNode : public Node {
-private:
-    Auton* m_test_path_auton;
-    Auton* m_prog_skills;
+ private:
+  Auton* m_test_path_auton;
 
-public:
-    AutonManagerNode(NodeManager* node_manager, IDriveNode* drive_node, 
-        OdometryNode* odometry_node, InertialSensorNode* inertial_sensor_node);
+ public:
+  AutonManagerNode(
+      NodeManager* node_manager, IDriveNode* drive_node,
+      OdometryNode* odometry_node, InertialSensorNode* inertial_sensor_node);
 
-    Auton* selected_auton;
+  Auton* selected_auton;
 
-    void initialize();
+  void initialize();
 
-    void autonPeriodic();
+  void autonPeriodic();
 };
