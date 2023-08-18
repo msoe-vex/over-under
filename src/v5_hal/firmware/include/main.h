@@ -35,11 +35,8 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-#include "auton/auton_actions/DeployAction.h"
 #include "auton/auton_actions/DriveStraightAction.h"
 #include "auton/auton_actions/FollowPathAction.h"
-#include "auton/auton_actions/IntakeAction.h"
-#include "auton/auton_actions/UpdateConveyorStateAction.h"
 #include "eigen/Eigen/Dense"
 #include "nodes/NodeManager.h"
 #include "nodes/actuator_nodes/MotorNode.h"
@@ -51,8 +48,6 @@
 #include "nodes/sensor_nodes/ADIUltrasonicNode.h"
 #include "nodes/sensor_nodes/ControllerNode.h"
 #include "nodes/sensor_nodes/InertialSensorNode.h"
-#include "nodes/subsystems/ConveyorNode.h"
-#include "nodes/subsystems/IntakeNode.h"
 #include "nodes/subsystems/drivetrain_nodes/HolonomicDriveNode.h"
 #include "nodes/subsystems/drivetrain_nodes/SwerveDriveNode.h"
 #include "nodes/subsystems/drivetrain_nodes/TankDriveNode.h"

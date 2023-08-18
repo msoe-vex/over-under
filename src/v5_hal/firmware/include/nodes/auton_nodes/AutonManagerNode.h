@@ -7,8 +7,6 @@
 #include "nodes/NodeManager.h"
 #include "nodes/odometry_nodes/OdometryNode.h"
 #include "nodes/sensor_nodes/InertialSensorNode.h"
-#include "nodes/subsystems/ConveyorNode.h"
-#include "nodes/subsystems/IntakeNode.h"
 #include "nodes/subsystems/drivetrain_nodes/IDriveNode.h"
 #include "pathing/PathManager.h"
 
