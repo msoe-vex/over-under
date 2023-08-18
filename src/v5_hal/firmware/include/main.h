@@ -54,7 +54,6 @@
 #include "nodes/system_nodes/BatteryNode.h"
 #include "nodes/system_nodes/CompetitionStatusNode.h"
 #include "nodes/system_nodes/ConnectionCheckerNode.h"
-#include "nodes/system_nodes/ProsTimeNode.h"
 #include "pathing/PathManager.h"
 #include "util/Logger.h"
 
