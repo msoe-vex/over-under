@@ -19,7 +19,7 @@ private:
     Auton* m_prog_skills;
 
 public:
-    AutonManagerNode(NodeManager* node_manager, IDriveNode* drive_node, ConveyorNode* conveyor_node, IntakeNode* intake_node, 
+    AutonManagerNode(NodeManager* node_manager, IDriveNode* drive_node, 
         OdometryNode* odometry_node, InertialSensorNode* inertial_sensor_node);
 
     Auton* selected_auton;

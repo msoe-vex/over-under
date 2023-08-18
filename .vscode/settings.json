@@ -117,5 +117,6 @@
     ],
     "python.autoComplete.extraPaths": [
         "/opt/ros/humble/lib/python3.8/site-packages/"
-    ]
+    ],
+    "cmake.configureOnOpen": false
 }

@@ -1,4 +1,4 @@
- {
+{
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
@@ -9,8 +9,12 @@
         {
             "label": "v5_hal Firmware Build",
             "type": "shell",
-            "windows": { "command": "catkin_make v5_hal_firmware_build" },
-            "linux": { "command": "catkin_make v5_hal_firmware_build" },
+            "windows": {
+                "command": ". /opt/ros/noetic/setup.sh && catkin_make v5_hal_firmware_build"
+            },
+            "linux": {
+                "command": ". /opt/ros/noetic/setup.sh && catkin_make v5_hal_firmware_build"
+            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -37,8 +41,12 @@
         {
             "label": "v5_hal Firmware Clean",
             "type": "shell",
-            "windows": { "command": "catkin_make v5_hal_firmware_clean_all" },
-            "linux": { "command": "catkin_make v5_hal_firmware_clean_all" },
+            "windows": {
+                "command": "catkin_make v5_hal_firmware_clean_all"
+            },
+            "linux": {
+                "command": "catkin_make v5_hal_firmware_clean_all"
+            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -47,8 +55,12 @@
         {
             "label": "v5_hal Firmware Test",
             "type": "shell",
-            "windows": { "command": "catkin_make run_tests_v5_hal" },
-            "linux": { "command": "catkin_make run_tests_v5_hal" },
+            "windows": {
+                "command": "catkin_make run_tests_v5_hal"
+            },
+            "linux": {
+                "command": "catkin_make run_tests_v5_hal"
+            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -75,8 +87,12 @@
         {
             "label": "v5_hal Firmware Upload",
             "type": "shell",
-            "windows": { "command": "prosv5.exe upload" },
-            "linux": { "command": "prosv5 upload" },
+            "windows": {
+                "command": "prosv5.exe upload"
+            },
+            "linux": {
+                "command": "prosv5 upload"
+            },
             "options": {
                 "cwd": "${workspaceFolder}/src/v5_hal/firmware"
             },
