@@ -42,7 +42,6 @@
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/auton_nodes/AutonManagerNode.h"
 #include "nodes/sensor_nodes/ADIAnalogInNode.h"
-#include "nodes/sensor_nodes/ADIDigitalInNode.h"
 #include "nodes/sensor_nodes/ADIEncoderNode.h"
 #include "nodes/sensor_nodes/ADIGyroNode.h"
 #include "nodes/sensor_nodes/ADIUltrasonicNode.h"
