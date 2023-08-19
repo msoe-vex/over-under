@@ -57,7 +57,7 @@ find_package(catkin REQUIRED COMPONENTS
    V5Controller.msg
    V5InertialSensor.msg
    V5Motor.msg
-   V5RotationSensor.msg
+  #  V5RotationSensor.msg
  )
 
 ## Generate services in the 'srv' folder
