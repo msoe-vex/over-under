@@ -49,7 +49,6 @@
 #include "nodes/sensor_nodes/ControllerNode.h"
 #include "nodes/sensor_nodes/InertialSensorNode.h"
 #include "nodes/subsystems/drivetrain_nodes/HolonomicDriveNode.h"
-#include "nodes/subsystems/drivetrain_nodes/SwerveDriveNode.h"
 #include "nodes/subsystems/drivetrain_nodes/TankDriveNode.h"
 #include "nodes/system_nodes/BatteryNode.h"
 #include "nodes/system_nodes/CompetitionStatusNode.h"

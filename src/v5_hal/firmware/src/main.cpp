@@ -22,8 +22,6 @@ InertialSensorNode* inertial_sensor;
 
 OdometryNode* odom_node;
 
-Auton* programming_skills_auton;
-
 AutonManagerNode* auton_manager_node;
 
 ConnectionCheckerNode* connection_checker_node;
