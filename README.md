@@ -49,3 +49,6 @@ If you have any issues with PROS, especially if you are getting error messages a
 
 ### C++
 If you are having issues with C++, start by referring to the C++ Guide in the top level of this project. If the answers aren't there, Google is always your friend as a software engineer. If you are still stumped, contact a veteran member.
+
+### Include Errors
+If you are getting lots of include errors or your intellisense and/or code completion is not really working, ensure that you have a `c_cpp_properties.json` file in your .vscode folder. If you do not, ensure you have all the required extensions installed as listed in the README. If you do, close and reopen VSCode. The PROS extension should generate that file for you and point the C++ extension to the C++ compiler that comes bundled with the PROS extension.
