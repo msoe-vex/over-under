@@ -4,8 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "/opt/ros/noetic/include/**",
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/pros"
+                "${workspaceFolder}/spin-up/src",
+                "${workspaceFolder}/spin-up/pros"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cppStandard": "c++20",

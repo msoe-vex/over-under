@@ -1,0 +1,29 @@
+{
+  "configurations": [
+    {
+      "name": "PROS Project",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "c:\\Users\\powersd\\Documents\\Raider Robotics\\repos\\over-under\\spin-up\\include"
+      ],
+      "defines": [
+        "_DEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "compilerPath": "c:\\Users\\powersd\\AppData\\Roaming\\Code\\User\\globalStorage\\sigbots.pros\\install\\pros-toolchain-windows\\usr\\bin\\arm-none-eabi-g++",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "gcc-arm",
+      "compileCommands": "c:\\Users\\powersd\\Documents\\Raider Robotics\\repos\\over-under\\spin-up\\compile_commands.json",
+      "browse": {
+        "path": [
+          "c:\\Users\\powersd\\Documents\\Raider Robotics\\repos\\over-under\\spin-up"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      }
+    }
+  ],
+  "version": 4
+}
