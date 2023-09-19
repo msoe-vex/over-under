@@ -10,15 +10,24 @@ namespace factory {
 // enum class Robot { kRobotOne, kRobotTwo };
 
 struct HolonomicDrivetrainDefinition {
- public:
-  std::vector<hardware::ProsMotorDefinition> frontRightMotorDefinitions;
-  std::vector<hardware::ProsMotorDefinition> backRightMotorDefinitions;
-  std::vector<hardware::ProsMotorDefinition> backLeftMotorDefinitions;
-  std::vector<hardware::ProsMotorDefinition> frontLeftMotorDefinitions;
+  public:
+    std::vector<hardware::ProsMotorDefinition> frontRightMotorDefinitions;
+    std::vector<hardware::ProsMotorDefinition> backRightMotorDefinitions;
+    std::vector<hardware::ProsMotorDefinition> backLeftMotorDefinitions;
+    std::vector<hardware::ProsMotorDefinition> frontLeftMotorDefinitions;
 };
+
+struct TankDriveDefinition {
+  public:
+    std::vector<hardware::ProsMotorDefinition> 
+        leftMotorDefinitions, rightMotorDefinitions;
+}
 
 [[nodiscard]] drivetrain::HolonomicDrivetrain MakeHolonomicDrivetrain(
     HolonomicDrivetrainDefinition drivetrainDefinition);
+
+[[nodiscard]] std::unique_ptr<drivetrain::TankDrive> MakeTankDrive(
+  TankDriveDefinition driveDefinition);
 
 // [[nodiscard]] MakeProsMotor();
 }  // namespace factory

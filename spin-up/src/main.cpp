@@ -72,7 +72,12 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  auto driver_controller_ptr = hardware::ProsController::MakeDriverController();
+  std::unique_ptr<ProsController> driver_controller_ptr = hardware::ProsController::MakeDriverController();
+
+  std::unique_ptr<TankDrive> tank_drive_ptr = drivetrain::MakeTankDrive({
+    constant::kLeftDrivetrain,
+    constant::kRightDrivetrain
+  })
 
   // auto drivetrain = drivetrain::HolonomicDirectDrivetrain();
   // while (true) { drivetrain.Drive(*driver_controller_ptr); }

@@ -21,4 +21,22 @@ drivetrain::HolonomicDrivetrain MakeHolonomicDrivetrain(
   return drivetrain::HolonomicDrivetrain(
       drivetrain::HolonomicMotors(std::move(motor_ptrs)));
 }
+
+// TODO: Add checks to ensure that both definitions vectors are the same size.
+std::unique_ptr<drivetrain::TankDrive> MakeTankDrive(
+    TankDriveDefinition driveDefinition) {
+  
+  std::unique_ptr<interface::Motor> left_motor_group_ptr;
+  std::unique_ptr<interface::Motor> right_motor_group_ptr;
+
+  left_motor_group_ptr = std::make_unique<ProsMotorGroup>(
+    driveDefinition.leftMotorDefinitions,
+    constant::kDrivetrainCartridge);
+  right_motor_group_ptr = std::make_unique<ProsMotorGroup>(
+    driveDefinition.rightMotorDefinitions,
+    constant::kDrivetrainCartridge);
+
+  return std::make_unique<drivetrain::TankDrive>(
+      drivetrain::TankMotors(left_motor_group_ptr, right_motor_group_ptr));
+}
 }  // namespace factory
