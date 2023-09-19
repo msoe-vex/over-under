@@ -1,0 +1,204 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "presentation": {
+        "panel": "new"
+    },
+    "tasks": [
+        {
+            "label": "v5_hal Firmware Build",
+            "type": "shell",
+            "windows": {
+                "command": ". /opt/ros/noetic/setup.sh && catkin_make v5_hal_firmware_build"
+            },
+            "linux": {
+                "command": ". /opt/ros/noetic/setup.sh && catkin_make v5_hal_firmware_build"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "v5_hal Firmware Clean",
+            "type": "shell",
+            "windows": {
+                "command": "catkin_make v5_hal_firmware_clean_all"
+            },
+            "linux": {
+                "command": "catkin_make v5_hal_firmware_clean_all"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "v5_hal Firmware Test",
+            "type": "shell",
+            "windows": {
+                "command": "catkin_make run_tests_v5_hal"
+            },
+            "linux": {
+                "command": "catkin_make run_tests_v5_hal"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "v5_hal Firmware Upload",
+            "type": "shell",
+            "windows": {
+                "command": "prosv5.exe upload"
+            },
+            "linux": {
+                "command": "prosv5 upload"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/src/v5_hal/firmware"
+            },
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": "build"
+        },
+        {
+            "label": "v5_hal Firmware Build (WSL1)",
+            "type": "shell",
+            "command": "catkin_make v5_hal_firmware_build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "v5_hal Firmware Clean (WSL1)",
+            "type": "shell",
+            "command": "catkin_make v5_hal_firmware_clean_all",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "v5_hal Firmware Test (WSL1)",
+            "type": "shell",
+            "command": "catkin_make run_tests_v5_hal",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "v5_hal Firmware WSL Upload (WSL1)",
+            "type": "shell",
+            "command": "catkin_make v5_hal_firmware_wsl_upload",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": "build"
+        }
+    ]
+}

@@ -23,5 +23,3 @@ temp.errors
 
 # VSCode
 .history/
-.vscode/**/*
-.vscode/*
