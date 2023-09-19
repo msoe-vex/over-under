@@ -3,7 +3,9 @@
 
 PROS workspace for the 2023-2024 VEX U game Over Under.
 
-## Reccomended Tools
+### :bandbang: This project is under construction and currently has many errors. This README is a good starting point but refer to the `SpinUp-ros2` repo for our fully functioning code from last year. :bangbang:
+
+## Recommend Tools
 [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Git Tools:
@@ -17,7 +19,7 @@ You can clone the resposity using the built in funtionality in most Git GUI appl
 
 If you are using the command line, run the below command in the folder that you want the the `over-under` project folder to exist INSIDE OF. In other words, don't make an `over-under` folder and run the command inside of that, you will have two layers of `over-under`. You should create a folder to hold repositories in and run the below command in there. Command to run: `git clone` followed by the path copies from the repo's green Code button like the image below. If you are using SSH, it should look like: `git clone git@github.com:msoe-vex/over-under.git`
 
-![Code button dialog popup](image.png)
+![Code button dialog popup](images/image.png)
 
 ## Development Environment Options
 There are two main options for development environments:
