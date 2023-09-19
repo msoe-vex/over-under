@@ -3,7 +3,7 @@
 
 PROS workspace for the 2023-2024 VEX U game Over Under.
 
-### :bandbang: This project is under construction and currently has many errors. This README is a good starting point but refer to the `SpinUp-ros2` repo for our fully functioning code from last year. :bangbang:
+### :bangbang: This project is under construction and currently has many errors. This README is a good starting point but refer to the `SpinUp-ros2` repo for our fully functioning code from last year. :bangbang:
 
 ## Recommend Tools
 [Visual Studio Code](https://code.visualstudio.com/)
