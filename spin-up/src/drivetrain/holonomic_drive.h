@@ -7,31 +7,31 @@
 
 namespace drivetrain {
 class HolonomicDrivetrain {
- public:
-  HolonomicDrivetrain(HolonomicMotors holonomic_motors)
-      : holonomic_motors_(std::move(holonomic_motors)) {}
+  public:
+    HolonomicDrivetrain(HolonomicMotors holonomic_motors)
+        : holonomic_motors_(std::move(holonomic_motors)) {}
 
- protected:
-  [[nodiscard]] inline HolonomicMotors& holonomic_motors() {
-    return holonomic_motors_;
-  }
+  protected:
+    [[nodiscard]] inline HolonomicMotors& holonomic_motors() {
+      return holonomic_motors_;
+    }
 
- private:
-  HolonomicMotors holonomic_motors_;
+  private:
+    HolonomicMotors holonomic_motors_;
 };
 
 /**
  * Implements a holonomic drive system.
  */
 class FieldOrientedHolonomicDrivetrain : public HolonomicDrivetrain {
- public:
-  using HolonomicDrivetrain::HolonomicDrivetrain;
+  public:
+    using HolonomicDrivetrain::HolonomicDrivetrain;
 };
 
 class HolonomicDirectDrivetrain : virtual public HolonomicDrivetrain {
- public:
-  using HolonomicDrivetrain::HolonomicDrivetrain;  // constructor inheritance
+  public:
+    using HolonomicDrivetrain::HolonomicDrivetrain;  // constructor inheritance
 
-  void Drive(const interface::Controller&);
+    void Drive(const interface::Controller&);
 };
 }  // namespace drivetrain
