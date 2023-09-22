@@ -480,6 +480,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "13bd41f508810a131401606d54ac32a467c97172d74ba7662562ebba5ad07fa0"
 
 [[package]]
+name = "over-under-rust"
+version = "0.1.0"
+dependencies = [
+ "vex-rt",
+]
+
+[[package]]
 name = "owner-monad"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -592,13 +599,6 @@ name = "regex-syntax"
 version = "0.7.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dbb5fb1acd8a1a18b3dd5be62d25485eb770e05afb408a9627d14d451bae12da"
-
-[[package]]
-name = "rust-vex"
-version = "0.1.0"
-dependencies = [
- "vex-rt",
-]
 
 [[package]]
 name = "rustc-hash"
