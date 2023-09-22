@@ -1,9 +1,9 @@
 {
-	"name": "VEX-rt",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
-	"customizations": {
+    "name": "vex-rt",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
         "vscode": {
             "settings": {
                 "terminal.integrated.profiles.linux": {
@@ -15,23 +15,20 @@
             },
             "extensions": [
                 "ms-azuretools.vscode-docker",
-                "ms-vscode.cpptools",
-                "twxs.cmake",
-                "ms-iot.vscode-ros",
                 "streetsidesoftware.code-spell-checker",
                 "GitHub.vscode-pull-request-github",
                 "DotJoshJohnson.xml",
                 "redhat.vscode-yaml",
                 "yzhang.markdown-all-in-one",
                 "vadimcn.vscode-lldb",
-				"mutantdino.resourcemonitor",
-				"rust-lang.rust-analyzer",
-				"tamasfe.even-better-toml",
-				"serayuzgur.crates"
+                "mutantdino.resourcemonitor",
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml",
+                "serayuzgur.crates",
+                "sigbots.pros"
             ]
         }
     },
-    // This will launch the container as a non-root user
     "runArgs": [
         // This will allow you to use a ptrace-based debugger like C++
         "--network=host",
