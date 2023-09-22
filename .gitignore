@@ -1,5 +1,4 @@
 # Catkin build files
-build/
 devel/
 install/
 src/v5_hal/firmware/include/ros_lib/*
