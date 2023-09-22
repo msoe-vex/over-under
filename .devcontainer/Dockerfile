@@ -14,7 +14,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get update && \
     apt-get install -y git python3 python3-pip python-is-python3 wget && \
-    python3 -m pip install pros-cli
+    python3 -m pip install pros-cli==3.4.3
 
 
 
