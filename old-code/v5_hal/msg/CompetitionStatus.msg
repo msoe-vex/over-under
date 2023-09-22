@@ -1,4 +1,0 @@
-uint8 status
-bool is_autonomous
-bool is_comp_connected
-bool is_disabled

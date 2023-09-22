@@ -1,4 +1,0 @@
-int32 distance
-int32 confidence
-int32 object_size
-int32 object_velocity

@@ -119,5 +119,11 @@
     "python.autoComplete.extraPaths": [
         "/opt/ros/humble/lib/python3.8/site-packages/"
     ],
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "[rust]": {
+        "editor.formatOnSave": true,
+    },
+    "rust-analyzer.checkOnSave.allTargets": false,
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rust-analyzer.procMacro.enable": true,
 }

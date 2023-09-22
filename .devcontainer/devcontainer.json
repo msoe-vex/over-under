@@ -1,8 +1,9 @@
 {
-    "image": "docker.io/raiderrobotics/container-registry:rr-noetic-base",
-    // Causes permission errors when running make (i.e. colcon build) without sudo?
-    // "remoteUser": "ros",
-    "customizations": {
+	"name": "VEX-rt",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
         "vscode": {
             "settings": {
                 "terminal.integrated.profiles.linux": {
@@ -21,7 +22,12 @@
                 "GitHub.vscode-pull-request-github",
                 "DotJoshJohnson.xml",
                 "redhat.vscode-yaml",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+                "vadimcn.vscode-lldb",
+				"mutantdino.resourcemonitor",
+				"rust-lang.rust-analyzer",
+				"tamasfe.even-better-toml",
+				"serayuzgur.crates"
             ]
         }
     },
