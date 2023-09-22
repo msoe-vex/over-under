@@ -20,32 +20,16 @@ If you are using the command line, run the below command in the folder that you 
 ![Code button dialog popup](image.png)
 
 ## Development Environment Options
-There are two main options for development environments:
-
-### Option 1: Install only the required extentions in VSCode
-This option is definitely the more lightweight option. All you have to do is install a few VSCode extensions that will give you basic C++ usage, compilation, and the ability to upload to the robot. This is NOT a full C++ development environment, which is not required to work with the project. If you are not familiar with VSCode or extensions read some of [this](https://code.visualstudio.com/docs/editor/extension-marketplace).
-
-#### 1. Install the C/C++ Extension Pack
-C++ intellisense, code completion, and basic linking through Cmake.
-
-#### 2. Install the PROS extension
-[PROS](https://pros.cs.purdue.edu/) is the library that we use to communicate with our robot. It is an open-source project updated and maintained by students and faculty from Purdue University. This extention gives us easy access to the PROS CLI commands through the PROS Terminal. PROS compiles and uploads our code for us which is why we don't need a full C++ development environment.
-
-### Option 2: Docker Containers through VSCode's Dev Containers
-This option utilizes VSCode's Dev Containers extension to open the project within a Linux Docker Container that has a full C++ development environment as well as all required and reccomended extentions. This option also containerizes this development environment so that it doesn't mess with anything else on your computer. This is the more complicated of the two options as a full C++ development environment is not required.
+### Docker Containers through VSCode's Dev Containers
+This option utilizes VSCode's Dev Containers extension to open the project within a Linux Docker Container that has a full Rust development environment as well as all required and reccomended extentions. This option also containerizes this development environment so that it doesn't mess with anything else on your computer.
 
 #### **The rest of this section is under construction, only use this option if you know what you are doing.**
 
 ## Using PROS
-**From Dev environmet Option 1:** Clicking on the PROS icon in the extentions list will bring up a list of different commands to click on where the file system would normally be. Almost everything in PROS is available here but I reccomend clicking on the `Integrated Terminal` option to bring up the PROS Terminal which gives you access to the PROS CLI inside of this terminal.
-
-**From Dev Environment Option 2:** Opening a terminal in VSCode should gain you access to the PROS CLI.
+Opening a terminal in VSCode should gain you access to the PROS CLI.
 
 **Once you get access to the PROS CLI:** There are two main comands to know. `pros make` or `pros build` will compile all of the C++ code in the current PROS Project. If there are any comile errors, they will show up in this terminal after running one of those commands. `pros upload` will upload the code to the currently connected VEX Brain or Controller. Brains or Controllers should be connected to laptops with a USB cable. 
 
 ## Troubleshooting
 ### PROS
 If you have any issues with PROS, especially if you are getting error messages about the PROS Toolchain. Restarting your computer works more often than it should. You can also try uninstalling PROS from the Exention and doing the same with the extension yourself. If you are still having issues or are having other issues, constact a veteran member.
-
-### C++
-If you are having issues with C++, start by referring to the C++ Guide in the top level of this project. If the answers aren't there, Google is always your friend as a software engineer. If you are still stumped, contact a veteran member.
