@@ -1,5 +1,5 @@
 [package]
-name = "rust-vex"
+name = "over-under-rust"
 version = "0.1.0"
 authors = ["MSOE"]
 edition = "2021"
