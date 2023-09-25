@@ -17,11 +17,11 @@ impl Robot for MyRobot {
         Self {
             drive: Mutex::new(drive::Drive {
                 left_drive: peripherals
-                    .port01
+                    .port12
                     .into_motor(Gearset::EighteenToOne, EncoderUnits::Degrees, false)
                     .unwrap(),
                 right_drive: peripherals
-                    .port02
+                    .port13
                     .into_motor(Gearset::EighteenToOne, EncoderUnits::Degrees, true)
                     .unwrap(),
             }),
