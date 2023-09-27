@@ -1,14 +1,15 @@
 #![no_std]
 #![no_main]
+extern crate alloc;
 
 use core::time::Duration;
 
+use alloc::ffi::CString;
 use smart_motor::SmartMotor;
 use vex_rt::{prelude::*, select};
 
 mod drive;
 mod smart_motor;
-extern crate alloc;
 struct MyRobot {
     drive: Mutex<drive::Drive>,
     controller: Controller,
@@ -47,6 +48,13 @@ impl Robot for MyRobot {
     fn opcontrol(self: &mut MyRobot, ctx: Context) {
         println!("opcontrol");
 
+        let file = unsafe {
+            let directory = CString::new("/usd/robotName.txt").unwrap();
+            let mode = CString::new("r").unwrap() ;
+
+            libc::fopen(directory.as_ptr() as *const u8, mode.as_ptr() as *const u8)
+        };
+        
         // This loop construct makes sure the drive is updated every 10
         // milliseconds.
         let mut l = Loop::new(Duration::from_millis(10));
