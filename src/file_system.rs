@@ -32,14 +32,8 @@ impl From<FileOpenMode> for CString {
 
 pub struct File(*mut libc::FILE);
 
-pub trait FileSystem {
-    fn open(file_name: &str, mode: FileOpenMode) -> Self;
-    fn read(&self) -> Result<String, FromUtf8Error>;
-    fn close(self);
-}
-
-impl FileSystem for File {
-    fn open(file_name: &str, mode: FileOpenMode) -> Self {
+impl File {
+    pub fn open(file_name: &str, mode: FileOpenMode) -> Self {
         let file = unsafe {
             let directory = CString::new(file_name).unwrap();
             let mode = CString::from(mode);
@@ -49,7 +43,7 @@ impl FileSystem for File {
         File(file)
     }
 
-    fn read(&self) -> Result<String, FromUtf8Error> {
+    pub fn read(&self) -> Result<String, FromUtf8Error> {
         let contents = unsafe {
             let mut buf: Vec<u8> = vec![0; 128];
             libc::fread(buf.as_mut_ptr() as *mut c_void, 1, 128, self.0);
@@ -58,7 +52,7 @@ impl FileSystem for File {
         contents
     }
 
-    fn close(self) {
+    pub fn close(self) {
         drop(self);
     }
 }

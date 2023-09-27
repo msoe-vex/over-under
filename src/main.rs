@@ -52,11 +52,11 @@ impl Robot for MyRobot {
     fn opcontrol(self: &mut MyRobot, ctx: Context) {
         println!("opcontrol");
 
-        let mut f = File::open("/usd/robotName.txt", FileOpenMode::Read);
+        let robotName = {
+            let file = File::open("/usd/robotName.txt", FileOpenMode::Read);
 
-        let contents = f.read().unwrap();
-
-        f.close();
+            file.read().unwrap()
+        };
 
         // This loop construct makes sure the drive is updated every 10
         // milliseconds.
