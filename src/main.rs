@@ -4,7 +4,7 @@ extern crate alloc;
 
 use core::time::Duration;
 
-use alloc::ffi::CString;
+use alloc::{ffi::CString, string::String};
 use robot_15_in::Robot15In;
 use robot_24_in::Robot24In;
 use smart_motor::SmartMotor;
@@ -26,10 +26,10 @@ enum RobotController {
 impl Robot for RobotController {
     fn new(peripherals: Peripherals) -> Self {
         let robot_name = {
-            //TODO: check if file exists
-            let file = File::open("/usd/robotName.txt", FileOpenMode::Read);
-
-            file.read().unwrap()
+            match File::open("/usd/robotName.txt", FileOpenMode::Read) {
+                Some(file) => file.read().unwrap(),
+                None => String::from("Unknown"),
+            }
         };
 
         match robot_name.as_str() {

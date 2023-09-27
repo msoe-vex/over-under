@@ -7,6 +7,7 @@ use alloc::{
     vec::Vec,
 };
 use libc;
+use vex_rt::prelude::Error;
 
 pub enum FileOpenMode {
     Read,
@@ -33,14 +34,20 @@ impl From<FileOpenMode> for CString {
 pub struct File(*mut libc::FILE);
 
 impl File {
-    pub fn open(file_name: &str, mode: FileOpenMode) -> Self {
-        let file = unsafe {
+    pub fn open(file_name: &str, mode: FileOpenMode) -> Option<Self> {
+        unsafe {
             let directory = CString::new(file_name).unwrap();
             let mode = CString::from(mode);
 
-            libc::fopen(directory.as_ptr() as *const u8, mode.as_ptr() as *const u8)
-        };
-        File(file)
+            let file_exists: i32 = libc::access(directory.as_ptr() as *const u8, 0);
+
+            if file_exists == 0 {
+                let file = libc::fopen(directory.as_ptr() as *const u8, mode.as_ptr() as *const u8);
+                return Some(File(file));
+            } else {
+                return None;
+            }
+        }
     }
 
     pub fn read(&self) -> Result<String, FromUtf8Error> {
