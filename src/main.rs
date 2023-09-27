@@ -5,83 +5,70 @@ extern crate alloc;
 use core::time::Duration;
 
 use alloc::ffi::CString;
+use robot_15_in::Robot15In;
+use robot_24_in::Robot24In;
 use smart_motor::SmartMotor;
 use vex_rt::{prelude::*, select};
 
-use crate::file_system::{File, FileOpenMode, FileSystem};
+use crate::file_system::{File, FileOpenMode};
 
-mod drive;
-mod file_system;
+pub mod drive;
+pub mod file_system;
+mod robot_15_in;
+mod robot_24_in;
 mod smart_motor;
 
-struct MyRobot {
-    drive: Mutex<drive::Drive>,
-    controller: Controller,
+enum RobotController {
+    Robot24In(Robot24In),
+    Robot15In(Robot15In),
 }
 
-impl Robot for MyRobot {
+impl Robot for RobotController {
     fn new(peripherals: Peripherals) -> Self {
-        Self {
-            drive: Mutex::new(drive::Drive {
-                left_drive: SmartMotor::new(
-                    peripherals.port12,
-                    Gearset::EighteenToOne,
-                    EncoderUnits::Degrees,
-                    false,
-                ),
-                right_drive: SmartMotor::new(
-                    peripherals.port13,
-                    Gearset::EighteenToOne,
-                    EncoderUnits::Degrees,
-                    true,
-                ),
-            }),
-            controller: peripherals.master_controller,
-        }
-    }
-
-    fn initialize(self: &mut MyRobot, _ctx: Context) {
-        // Do any extra initialization here.
-    }
-
-    fn autonomous(self: &mut MyRobot, _ctx: Context) {
-        println!("autonomous");
-        // Write your autonomous routine here.
-    }
-
-    fn opcontrol(self: &mut MyRobot, ctx: Context) {
-        println!("opcontrol");
-
-        let robotName = {
+        let robot_name = {
+            //TODO: check if file exists
             let file = File::open("/usd/robotName.txt", FileOpenMode::Read);
 
             file.read().unwrap()
         };
 
-        // This loop construct makes sure the drive is updated every 10
-        // milliseconds.
-        let mut l = Loop::new(Duration::from_millis(10));
-        loop {
-            // Update the motors.
-            self.drive.lock().run(
-                self.controller.left_stick.get_y().unwrap(),
-                self.controller.right_stick.get_y().unwrap(),
-            );
-
-            select! {
-                // If the driver control period is done, break out of the loop.
-                _ = ctx.done() => break,
-
-                // Otherwise, when it's time for the next loop cycle, continue.
-                _ = l.select() => continue,
-            }
+        match robot_name.as_str() {
+            "15in" => RobotController::Robot15In(Robot15In::new(peripherals)),
+            "25in" => RobotController::Robot24In(Robot24In::new(peripherals)),
+            _ => RobotController::Robot24In(Robot24In::new(peripherals)),
         }
     }
 
-    fn disabled(self: &mut MyRobot, _ctx: Context) {
+    fn initialize(self: &mut RobotController, ctx: Context) {
+        match self {
+            RobotController::Robot24In(robot) => robot.initialize(ctx),
+            RobotController::Robot15In(robot) => robot.initialize(ctx),
+        }
+    }
+
+    fn autonomous(self: &mut RobotController, ctx: Context) {
+        println!("autonomous");
+        match self {
+            RobotController::Robot24In(robot) => robot.autonomous(ctx),
+            RobotController::Robot15In(robot) => robot.autonomous(ctx),
+        }
+    }
+
+    fn opcontrol(self: &mut RobotController, ctx: Context) {
+        println!("opcontrol");
+        match self {
+            RobotController::Robot24In(robot) => robot.opcontrol(ctx),
+            RobotController::Robot15In(robot) => robot.opcontrol(ctx),
+        }
+    }
+
+    fn disabled(self: &mut RobotController, ctx: Context) {
         println!("disabled");
-        // This runs when the robot is in disabled mode.
+        match self {
+            RobotController::Robot24In(robot) => robot.disabled(ctx),
+            RobotController::Robot15In(robot) => robot.disabled(ctx),
+        }
     }
 }
 
-entry!(MyRobot);
+entry!(RobotController);
