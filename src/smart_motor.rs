@@ -1,7 +1,7 @@
 use core::mem;
 
 use alloc::string::String;
-use vex_rt::{prelude::*};
+use vex_rt::prelude::*;
 
 pub struct SmartMotor {
     device: Device,
@@ -47,8 +47,8 @@ impl SmartMotor {
                     .plugged_type()
                     == DeviceType::Motor
                 {
-                    let old_port = mem::take(port);
-                    let motor = old_port
+                    let taken_port = mem::take(port);
+                    let motor = taken_port
                         .unwrap()
                         .into_motor(Gearset::EighteenToOne, EncoderUnits::Degrees, false)
                         .unwrap();
