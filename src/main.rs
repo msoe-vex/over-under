@@ -3,10 +3,12 @@
 
 use core::time::Duration;
 
+use smart_motor::SmartMotor;
 use vex_rt::{prelude::*, select};
 
 mod drive;
-
+mod smart_motor;
+extern crate alloc;
 struct MyRobot {
     drive: Mutex<drive::Drive>,
     controller: Controller,
@@ -16,14 +18,18 @@ impl Robot for MyRobot {
     fn new(peripherals: Peripherals) -> Self {
         Self {
             drive: Mutex::new(drive::Drive {
-                left_drive: peripherals
-                    .port12
-                    .into_motor(Gearset::EighteenToOne, EncoderUnits::Degrees, false)
-                    .unwrap(),
-                right_drive: peripherals
-                    .port13
-                    .into_motor(Gearset::EighteenToOne, EncoderUnits::Degrees, true)
-                    .unwrap(),
+                left_drive: SmartMotor::new(
+                    peripherals.port12,
+                    Gearset::EighteenToOne,
+                    EncoderUnits::Degrees,
+                    false,
+                ),
+                right_drive: SmartMotor::new(
+                    peripherals.port13,
+                    Gearset::EighteenToOne,
+                    EncoderUnits::Degrees,
+                    true,
+                ),
             }),
             controller: peripherals.master_controller,
         }
