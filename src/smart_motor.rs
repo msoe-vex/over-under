@@ -3,16 +3,9 @@ use core::mem;
 use alloc::string::String;
 use vex_rt::prelude::*;
 
-pub struct SmartMotor {
-    device: Device,
-    gearset: Gearset,
-    encoder_units: EncoderUnits,
-    reverse: bool,
-}
-
-enum Device {
+pub enum SmartMotor {
     Connected(Motor),
-    Disconnected(Option<SmartPort>),
+    Disconnected(Option<SmartPort>, Gearset, EncoderUnits, bool),
 }
 
 impl SmartMotor {
@@ -22,25 +15,17 @@ impl SmartMotor {
         encoder_units: EncoderUnits,
         reverse: bool,
     ) -> SmartMotor {
-        let device = if port.plugged_type() == DeviceType::Motor {
-            Device::Connected(port.into_motor(gearset, encoder_units, reverse).unwrap())
+        if port.plugged_type() == DeviceType::Motor {
+            SmartMotor::Connected(port.into_motor(gearset, encoder_units, reverse).unwrap())
         } else {
-            Device::Disconnected(Some(port))
-        };
-
-        SmartMotor {
-            device,
-            gearset,
-            encoder_units,
-            reverse,
+            SmartMotor::Disconnected(Some(port), gearset, encoder_units, reverse)
         }
     }
 
     pub fn connect(&mut self) -> Result<&mut Motor, Error> {
-        let device = &mut self.device;
-        match device {
-            Device::Connected(motor) => Ok(motor),
-            Device::Disconnected(port) => {
+        match self {
+            SmartMotor::Connected(motor) => Ok(motor),
+            SmartMotor::Disconnected(port, gearset, encoder_units, reverse) => {
                 if port
                     .as_mut()
                     .expect("port should never be None outside of this method")
@@ -50,14 +35,14 @@ impl SmartMotor {
                     let taken_port = mem::take(port);
                     let motor = taken_port
                         .unwrap()
-                        .into_motor(Gearset::EighteenToOne, EncoderUnits::Degrees, false)
+                        .into_motor(*gearset, *encoder_units, *reverse)
                         .unwrap();
 
-                    mem::swap(device, &mut Device::Connected(motor));
+                    mem::swap(self, &mut SmartMotor::Connected(motor));
 
-                    match device {
-                        Device::Connected(motor) => Ok(motor),
-                        Device::Disconnected(_) => unreachable!(),
+                    match self {
+                        SmartMotor::Connected(motor) => Ok(motor),
+                        SmartMotor::Disconnected(..) => unreachable!(),
                     }
                 } else {
                     Err(Error::Custom(String::from("error")))
