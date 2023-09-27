@@ -8,8 +8,12 @@ use alloc::ffi::CString;
 use smart_motor::SmartMotor;
 use vex_rt::{prelude::*, select};
 
+use crate::file_system::{File, FileOpenMode, FileSystem};
+
 mod drive;
+mod file_system;
 mod smart_motor;
+
 struct MyRobot {
     drive: Mutex<drive::Drive>,
     controller: Controller,
@@ -48,13 +52,12 @@ impl Robot for MyRobot {
     fn opcontrol(self: &mut MyRobot, ctx: Context) {
         println!("opcontrol");
 
-        let file = unsafe {
-            let directory = CString::new("/usd/robotName.txt").unwrap();
-            let mode = CString::new("r").unwrap() ;
+        let mut f = File::open("/usd/robotName.txt", FileOpenMode::Read);
 
-            libc::fopen(directory.as_ptr() as *const u8, mode.as_ptr() as *const u8)
-        };
-        
+        let contents = f.read().unwrap();
+
+        f.close();
+
         // This loop construct makes sure the drive is updated every 10
         // milliseconds.
         let mut l = Loop::new(Duration::from_millis(10));
