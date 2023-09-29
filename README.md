@@ -17,19 +17,22 @@ You can clone the resposity using the built in funtionality in most Git GUI appl
 
 If you are using the command line, run the below command in the folder that you want the the `over-under` project folder to exist INSIDE OF. In other words, don't make an `over-under` folder and run the command inside of that, you will have two layers of `over-under`. You should create a folder to hold repositories in and run the below command in there. Command to run: `git clone` followed by the path copies from the repo's green Code button like the image below. If you are using SSH, it should look like: `git clone git@github.com:msoe-vex/over-under.git`
 
-![Code button dialog popup](image.png)
-
 ## Development Environment Options
 ### Docker Containers through VSCode's Dev Containers
 This option utilizes VSCode's Dev Containers extension to open the project within a Linux Docker Container that has a full Rust development environment as well as all required and reccomended extentions. This option also containerizes this development environment so that it doesn't mess with anything else on your computer.
 
-#### **The rest of this section is under construction, only use this option if you know what you are doing.**
+## Using PROS and vex-rt
+Opening a terminal in VSCode should gain you access to the PROS CLI and Cargo, Rust's package manager.
 
-## Using PROS
-Opening a terminal in VSCode should gain you access to the PROS CLI.
+**Building and uploading the program:** In order to upload the program, first run the command `cargo run` in the terminal. This command runs a script called `upload.sh` in the `build` directory, which handles building the project. Next, run the command `pros upload` in a terminal **outside of the dev container**. This command will upload the code to the currently connected VEX Brain or Controller. Brains or Controllers should be connected to laptops with a USB cable. The command cannot be run inside the dev container due to WSL not detecting the V5 brain.
 
-**Once you get access to the PROS CLI:** There are two main comands to know. `pros make` or `pros build` will compile all of the C++ code in the current PROS Project. If there are any comile errors, they will show up in this terminal after running one of those commands. `pros upload` will upload the code to the currently connected VEX Brain or Controller. Brains or Controllers should be connected to laptops with a USB cable. 
+**Another useful PROS command:** `pros ut` will upload the built code to the currently connected VEX Brain or Controller and display the Brain's output on the terminal where the command was run.
+
+**Another useful Cargo command:** `cargo check` will check the project for errors. This command is also automatically run by the Rust Analyzer VS Code extenstion.
 
 ## Troubleshooting
+
 ### PROS
 If you have any issues with PROS, especially if you are getting error messages about the PROS Toolchain. Restarting your computer works more often than it should. You can also try uninstalling PROS from the Exention and doing the same with the extension yourself. If you are still having issues or are having other issues, constact a veteran member.
+
+
