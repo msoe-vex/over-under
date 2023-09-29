@@ -7,7 +7,6 @@ use alloc::{
     vec::Vec,
 };
 use libc;
-use vex_rt::prelude::Error;
 
 pub enum FileOpenMode {
     Read,
@@ -43,20 +42,19 @@ impl File {
 
             if file_exists == 0 {
                 let file = libc::fopen(directory.as_ptr() as *const u8, mode.as_ptr() as *const u8);
-                return Some(File(file));
+                Some(File(file))
             } else {
-                return None;
+                None
             }
         }
     }
 
     pub fn read(&self) -> Result<String, FromUtf8Error> {
-        let contents = unsafe {
+        unsafe {
             let mut buf: Vec<u8> = vec![0; 128];
             libc::fread(buf.as_mut_ptr() as *mut c_void, 1, 128, self.0);
             String::from_utf8(buf)
-        };
-        contents
+        }
     }
 
     pub fn close(self) {

@@ -2,13 +2,11 @@
 #![no_main]
 extern crate alloc;
 
-use core::time::Duration;
-
-use alloc::{ffi::CString, string::String};
+use alloc::string::String;
 use robot_15_in::Robot15In;
 use robot_24_in::Robot24In;
-use smart_motor::SmartMotor;
-use vex_rt::{prelude::*, select};
+
+use vex_rt::prelude::*;
 
 use crate::file_system::{File, FileOpenMode};
 
