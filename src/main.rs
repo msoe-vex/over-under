@@ -34,7 +34,7 @@ impl Robot for RobotController {
 
         match robot_name.as_str() {
             "15in" => RobotController::Robot15In(Robot15In::new(peripherals)),
-            "25in" => RobotController::Robot24In(Robot24In::new(peripherals)),
+            "24in" => RobotController::Robot24In(Robot24In::new(peripherals)),
             _ => RobotController::Robot24In(Robot24In::new(peripherals)),
         }
     }
