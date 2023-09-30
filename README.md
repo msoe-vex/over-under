@@ -33,7 +33,7 @@ Opening a terminal in VSCode should gain you access to the PROS CLI and Cargo, R
 ## Troubleshooting
 
 ### vex-rt
-1. go to https://discord.gg/UBuzRySp and ask `@magik` from QUEENS for help
+1. go to https://discord.gg/UBuzRySp and ask `@magik` from QUEEN for help
 2. if they don't respond: good luck
 
 
