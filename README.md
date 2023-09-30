@@ -32,6 +32,11 @@ Opening a terminal in VSCode should gain you access to the PROS CLI and Cargo, R
 
 ## Troubleshooting
 
+### vex-rt
+1. go to https://discord.gg/UBuzRySp and ask `@magik` from QUEENS for help
+2. if they don't respond: good luck
+
+
 ### PROS
 If you have any issues with PROS, especially if you are getting error messages about the PROS Toolchain. Restarting your computer works more often than it should. You can also try uninstalling PROS from the Exention and doing the same with the extension yourself. If you are still having issues or are having other issues, constact a veteran member.
 
