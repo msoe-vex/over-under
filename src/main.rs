@@ -30,6 +30,8 @@ impl Robot for RobotController {
             }
         };
 
+        println!("{}", &robot_name);
+
         match robot_name.as_str() {
             "15in" => RobotController::Robot15In(Robot15In::new(peripherals)),
             "25in" => RobotController::Robot24In(Robot24In::new(peripherals)),
@@ -45,7 +47,6 @@ impl Robot for RobotController {
     }
 
     fn autonomous(self: &mut RobotController, ctx: Context) {
-        println!("autonomous");
         match self {
             RobotController::Robot24In(robot) => robot.autonomous(ctx),
             RobotController::Robot15In(robot) => robot.autonomous(ctx),
@@ -53,7 +54,6 @@ impl Robot for RobotController {
     }
 
     fn opcontrol(self: &mut RobotController, ctx: Context) {
-        println!("opcontrol");
         match self {
             RobotController::Robot24In(robot) => robot.opcontrol(ctx),
             RobotController::Robot15In(robot) => robot.opcontrol(ctx),
@@ -61,7 +61,6 @@ impl Robot for RobotController {
     }
 
     fn disabled(self: &mut RobotController, ctx: Context) {
-        println!("disabled");
         match self {
             RobotController::Robot24In(robot) => robot.disabled(ctx),
             RobotController::Robot15In(robot) => robot.disabled(ctx),
