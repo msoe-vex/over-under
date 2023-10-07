@@ -15,6 +15,7 @@ pub mod file_system;
 mod robot_15_in;
 mod robot_24_in;
 mod smart_motor;
+mod smart_motor_group;
 
 enum RobotController {
     Robot24In(Robot24In),

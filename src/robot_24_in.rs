@@ -10,7 +10,7 @@ use crate::{
     drive::{self, Drive},
     smart_motor::SmartMotor,
 };
-
+use crate smart_motor_group::MotorGroup;
 pub struct Robot24In {
     drive: Mutex<Drive>,
     controller: Controller,
@@ -20,17 +20,23 @@ impl Robot for Robot24In {
     fn new(peripherals: Peripherals) -> Self {
         Self {
             drive: Mutex::new(drive::Drive {
-                left_drive: SmartMotor::new(
-                    peripherals.port12,
-                    Gearset::EighteenToOne,
-                    EncoderUnits::Degrees,
-                    false,
+                left_drive: MotorGroup::new(
+                    SmartMotor::new(
+                        peripherals.port12,
+                        Gearset::EighteenToOne,
+                        EncoderUnits::Degrees,
+                        false,
+                    ),
+                    
                 ),
-                right_drive: SmartMotor::new(
-                    peripherals.port13,
-                    Gearset::EighteenToOne,
-                    EncoderUnits::Degrees,
-                    true,
+                right_drive: MotorGroup::new(
+                    SmartMotor::new(
+                        peripherals.port13, 
+                        Gearset::EighteenToOne, 
+                        EncoderUnits::Degrees, 
+                        true,
+                    ),
+                    
                 ),
             }),
             controller: peripherals.master_controller,
