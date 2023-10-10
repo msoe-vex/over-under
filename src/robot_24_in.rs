@@ -1,5 +1,6 @@
 use core::time::Duration;
 
+use alloc::vec;
 use vex_rt::{
     prelude::*,
     robot::Robot,
@@ -9,8 +10,8 @@ use vex_rt::{
 use crate::{
     drive::{self, Drive},
     smart_motor::SmartMotor,
+    smart_motor_group::MotorGroup,
 };
-use crate smart_motor_group::MotorGroup;
 pub struct Robot24In {
     drive: Mutex<Drive>,
     controller: Controller,
@@ -20,24 +21,18 @@ impl Robot for Robot24In {
     fn new(peripherals: Peripherals) -> Self {
         Self {
             drive: Mutex::new(drive::Drive {
-                left_drive: MotorGroup::new(
-                    SmartMotor::new(
-                        peripherals.port12,
-                        Gearset::EighteenToOne,
-                        EncoderUnits::Degrees,
-                        false,
-                    ),
-                    
-                ),
-                right_drive: MotorGroup::new(
-                    SmartMotor::new(
-                        peripherals.port13, 
-                        Gearset::EighteenToOne, 
-                        EncoderUnits::Degrees, 
-                        true,
-                    ),
-                    
-                ),
+                left_drive: MotorGroup::new(vec![SmartMotor::new(
+                    peripherals.port12,
+                    Gearset::EighteenToOne,
+                    EncoderUnits::Degrees,
+                    false,
+                )]),
+                right_drive: MotorGroup::new(vec![SmartMotor::new(
+                    peripherals.port13,
+                    Gearset::EighteenToOne,
+                    EncoderUnits::Degrees,
+                    true,
+                )]),
             }),
             controller: peripherals.master_controller,
         }

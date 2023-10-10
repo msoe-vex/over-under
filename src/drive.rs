@@ -10,8 +10,8 @@ pub struct Drive {
 
 impl Drive {
     pub fn run(&mut self, left: i8, right: i8) -> Result<(), Error> {
-        self.left_drive.connect()?.move_i8(left)?;
-        self.right_drive.connect()?.move_i8(right)?;
+        self.left_drive.move_i8(left)?;
+        self.right_drive.move_i8(right)?;
         Ok(())
     }
 }

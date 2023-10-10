@@ -1,16 +1,17 @@
 use core::time::Duration;
 
+use alloc::vec;
 use vex_rt::{
     prelude::*,
     robot::Robot,
     rtos::{Context, Mutex},
 };
 
+use crate::smart_motor_group::MotorGroup;
 use crate::{
     drive::{self, Drive},
     smart_motor::SmartMotor,
 };
-use crate::smart_motor_group::MotorGroup;
 
 pub struct Robot15In {
     drive: Mutex<Drive>,
@@ -21,35 +22,19 @@ impl Robot for Robot15In {
     fn new(peripherals: Peripherals) -> Self {
         Self {
             drive: Mutex::new(drive::Drive {
-                left_drive: MotorGroup::new(
-                    SmartMotor::new(
-                        peripherals.port12,
-                        Gearset::EighteenToOne,
-                        EncoderUnits::Degrees,
-                        false,
-                    ),
-                    
-                ),
-                right_drive: MotorGroup::new(
-                    new::vec[SmartMotor::new(
-                        peripherals.port13, 
-                        Gearset::EighteenToOne, 
-                        EncoderUnits::Degrees, 
-                        true,
-                    ),
-                    ,
-                    SmartMotor::new(
-                        peripherals.port15, 
-                        Gearset::EighteenToOne, 
-                        EncoderUnits::Degrees, 
-                        true,
-                    ),]
-                ),
-            }   
-            ),
-
-        
-            
+                left_drive: MotorGroup::new(vec![SmartMotor::new(
+                    peripherals.port12,
+                    Gearset::EighteenToOne,
+                    EncoderUnits::Degrees,
+                    false,
+                )]),
+                right_drive: MotorGroup::new(vec![SmartMotor::new(
+                    peripherals.port13,
+                    Gearset::EighteenToOne,
+                    EncoderUnits::Degrees,
+                    true,
+                )]),
+            }),
             controller: peripherals.master_controller,
         }
     }
